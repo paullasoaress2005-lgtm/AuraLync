@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, KeyRound, LockKeyhole, Mail, MessageCircle } from "lucide-react";
+import { PublicThemeReset } from "@/components/public-theme-reset";
 
 type LoginPageProps = {
   searchParams?: Promise<{
@@ -15,11 +16,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const errorMessage =
     params?.error === "missing"
-      ? "Configuracao local ausente. O CRM precisa das variaveis do Supabase no servidor."
+      ? "Configuração local ausente. O CRM precisa das variáveis do Supabase no servidor."
       : params?.error === "profile"
-        ? "Login autenticado, mas este usuario ainda nao esta vinculado a uma clinica."
+        ? "Login autenticado, mas este usuário ainda não está vinculado a uma clínica."
         : params?.error
-          ? "Nao foi possivel entrar. Confira e-mail e senha ou solicite recuperacao."
+          ? "Não foi possível entrar. Confira e-mail e senha ou solicite recuperação."
           : null;
   const resetSent = params?.reset === "sent";
   const passwordUpdated = params?.password === "updated";
@@ -27,6 +28,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f8fbfb] px-5 py-8 text-[#102f36]">
+      <PublicThemeReset />
       <div className="mx-auto grid min-h-[calc(100vh-64px)] w-full max-w-[1180px] overflow-hidden rounded-xl border border-[#dfe8e7] bg-white shadow-[0_24px_70px_rgba(15,60,67,0.08)] lg:grid-cols-[0.9fr_1.1fr]">
         <section className="flex flex-col justify-between bg-[#0d3640] p-8 text-white md:p-10">
           <div>
@@ -58,7 +60,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               </h1>
               <p className="mt-5 text-sm leading-6 text-[#c7d8d9]">
                 Acompanhe conversas, agendamentos e sinais de atendimento em um
-                ambiente privado da sua clinica.
+                ambiente privado da sua clínica.
               </p>
             </div>
           </div>
@@ -81,7 +83,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               Entrar no CRM
             </h2>
             <p className="mt-2 text-sm leading-6 text-[#6f8588]">
-              Entre com seu e-mail e senha para acessar a central da clinica.
+              Entre com seu e-mail e senha para acessar a central da clínica.
             </p>
 
             {errorMessage ? (
@@ -92,7 +94,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
             {resetSent ? (
               <div className="mt-5 rounded-lg border border-[#b7dfd2] bg-[#f0faf6] px-4 py-3 text-sm text-[#246b52]">
-                Se o contato existir, enviaremos as instrucoes de recuperacao.
+                Se o contato existir, enviaremos as instruções de recuperação.
               </div>
             ) : null}
 
@@ -152,8 +154,26 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 Esqueci minha senha
             </Link>
 
+            <div className="mt-6 grid gap-2 rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#789093]">
+                Acessos de demonstração
+              </p>
+              <div className="rounded-lg bg-white p-3 text-sm leading-6 text-[#31575d]">
+                <span className="font-semibold text-[#102f36]">Médico:</span>{" "}
+                demonstrativo@auralync.com
+              </div>
+              <div className="rounded-lg bg-white p-3 text-sm leading-6 text-[#31575d]">
+                <span className="font-semibold text-[#102f36]">Secretária:</span>{" "}
+                secretaria@auralync.com
+              </div>
+              <p className="text-xs leading-5 text-[#789093]">
+                A senha temporária deve ser definida no Supabase Auth antes do
+                primeiro uso público.
+              </p>
+            </div>
+
             <p className="mt-6 text-center text-xs leading-5 text-[#789093]">
-              Acesso restrito. Cada clinica visualiza apenas seus proprios dados.
+              Acesso restrito. Cada clínica visualiza apenas seus próprios dados.
             </p>
           </div>
         </section>

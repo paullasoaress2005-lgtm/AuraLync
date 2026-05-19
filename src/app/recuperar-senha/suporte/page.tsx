@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { MessageCircleWarning } from "lucide-react";
+import { PublicThemeReset } from "@/components/public-theme-reset";
 
 export default function RecoverySupportPage() {
   return (
     <main className="min-h-screen bg-[#f8fbfb] px-5 py-8 text-[#102f36]">
+      <PublicThemeReset />
       <section className="mx-auto mt-10 w-full max-w-[520px] rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_24px_70px_rgba(15,60,67,0.08)]">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#fff1f0] text-[#9f2d20]">
           <MessageCircleWarning className="h-5 w-5" />
         </div>
         <h1 className="mt-6 text-2xl font-semibold">Fale com o suporte AuraLync</h1>
         <p className="mt-2 text-sm leading-6 text-[#6f8588]">
-          Por seguranca, o codigo foi bloqueado apos tentativas incorretas. Entre em contato com a equipe AuraLync para confirmar sua identidade e liberar o acesso.
+          Por segurança, o código foi bloqueado após tentativas incorretas. Entre em contato com a equipe AuraLync para confirmar sua identidade e liberar o acesso.
         </p>
         <Link
           href="https://wa.me/5598984668340"

@@ -27,7 +27,7 @@ type Props = {
 };
 
 function formatUpdatedAt(value: string | null) {
-  if (!value) return "Ainda nao salvo";
+  if (!value) return "Ainda não salvo";
 
   return new Intl.DateTimeFormat("pt-BR", {
     dateStyle: "short",
@@ -92,7 +92,7 @@ export function SettingsPanel({ payload }: Props) {
       if (!data.ok) {
         setMessage(
           data.error ??
-            "Nao foi possivel salvar. Confira se o SQL de ajustes ja foi executado.",
+            "Não foi possível salvar. Confira se o SQL de ajustes já foi executado.",
         );
         return;
       }
@@ -116,11 +116,11 @@ export function SettingsPanel({ payload }: Props) {
           <section className="rounded-xl border border-[#f2dfb8] bg-[#fff8e8] p-5 text-[#8a6118]">
             <div className="flex items-center gap-2 text-sm font-semibold">
               <Database className="h-4 w-4" />
-              Banco aguardando tabela de ajustes
+              Ajustes aguardando ativação no banco
             </div>
             <p className="mt-2 text-sm leading-6">
-              Execute `sql/adm_system_clinic_settings.sql` no SQL Editor do
-              Supabase para ativar salvamento real desta tela.
+              Execute o arquivo `sql/adm_system_clinic_settings.sql` no SQL
+              Editor do Supabase para ativar o salvamento real desta tela.
             </p>
           </section>
         ) : null}
@@ -134,7 +134,7 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <Palette className="h-4 w-4" />
-            Aparencia
+            Aparência
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-[1fr_260px] md:items-center">
             <div>
@@ -142,8 +142,8 @@ export function SettingsPanel({ payload }: Props) {
                 Tema visual do CRM
               </h2>
               <p className="mt-2 text-sm leading-6 text-[#60777a]">
-                O modo noturno fica local neste navegador. As preferencias
-                abaixo sao salvas por clinica.
+                O modo noturno fica local neste navegador e só vale dentro do
+                CRM. As preferências abaixo são salvas por clínica.
               </p>
             </div>
             <ThemeToggle />
@@ -153,7 +153,7 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <SlidersHorizontal className="h-4 w-4" />
-            Dados da clinica
+            Dados da clínica
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <label className="block">
@@ -185,7 +185,7 @@ export function SettingsPanel({ payload }: Props) {
               />
             </label>
             <label className="block">
-              <FieldLabel>Fuso horario</FieldLabel>
+              <FieldLabel>Fuso horário</FieldLabel>
               <select
                 name="timezone"
                 defaultValue={settings.timezone}
@@ -229,7 +229,7 @@ export function SettingsPanel({ payload }: Props) {
                   Atender aos sabados
                 </span>
                 <span className="mt-1 block text-xs leading-5 text-[#789093]">
-                  Controla disponibilidade padrao no calendario.
+                  Controla disponibilidade padrão no calendário.
                 </span>
               </span>
               <input
@@ -258,7 +258,7 @@ export function SettingsPanel({ payload }: Props) {
               />
             </label>
             <label className="block">
-              <FieldLabel>Duracao padrao</FieldLabel>
+              <FieldLabel>Duração padrão</FieldLabel>
               <input
                 name="defaultAppointmentDuration"
                 type="number"
@@ -287,27 +287,28 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-[#0d3640] p-6 text-white shadow-[0_22px_55px_rgba(13,54,64,0.16)]">
           <div className="flex items-center gap-2 text-sm font-medium">
             <Smartphone className="h-4 w-4" />
-            WhatsApp
+            WhatsApp e automações
           </div>
           <p className="mt-5 text-2xl font-semibold">
-            Instancia {settings.evolutionInstance}
+            Integração protegida
           </p>
           <p className="mt-3 text-sm leading-6 text-[#c7d8d9]">
-            A instancia e vinculada ao tenant. Troca de numero deve passar por
-            validacao para nao quebrar os workflows.
+            WhatsApp, Chatwoot, n8n e agenda ficam conectados no servidor. A
+            troca de número ou instância passa por validação para não quebrar
+            os workflows.
           </p>
         </section>
 
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <Bell className="h-4 w-4" />
-            Notificacoes
+            Notificações
           </div>
           <div className="mt-5 space-y-3">
             <ToggleField
               name="notifyNewAppointment"
               label="Novo agendamento"
-              description="Avisar quando IA ou recepcao criarem consulta."
+              description="Avisar quando IA ou recepção criarem consulta."
               defaultChecked={settings.notifyNewAppointment}
             />
             <ToggleField
@@ -324,8 +325,8 @@ export function SettingsPanel({ payload }: Props) {
             />
             <ToggleField
               name="notifyIntegrationFailure"
-              label="Falha de integracao"
-              description="Avisar quando WhatsApp, Chatwoot ou calendario falharem."
+              label="Falha de integração"
+              description="Avisar quando WhatsApp, Chatwoot ou calendário falharem."
               defaultChecked={settings.notifyIntegrationFailure}
             />
           </div>
@@ -334,11 +335,11 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <ShieldCheck className="h-4 w-4" />
-            Automacao segura
+            Automação segura
           </div>
           <div className="mt-5 space-y-4">
             <label className="block">
-              <FieldLabel>Confianca minima da IA</FieldLabel>
+              <FieldLabel>Confiança mínima da IA</FieldLabel>
               <input
                 name="aiHandoffThreshold"
                 type="number"
@@ -380,7 +381,7 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <LogOut className="h-4 w-4" />
-            Sessao
+            Sessão
           </div>
           <p className="mt-3 text-sm leading-6 text-[#60777a]">
             Encerre o acesso deste navegador antes de alternar conta ou

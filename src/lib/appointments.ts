@@ -53,7 +53,7 @@ type AppointmentRow = {
 
 const DEMO_CLIENT = {
   name: "Dra. Camila Guimarães Espindola",
-  email: "5598920010966@auralync.local",
+  email: "demonstrativo@auralync.com",
   evolution_instance: "testes",
   specialty: "ginecologista",
   active: true,

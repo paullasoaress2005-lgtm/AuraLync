@@ -1,4 +1,5 @@
 import { KeyRound } from "lucide-react";
+import { PublicThemeReset } from "@/components/public-theme-reset";
 
 type PageProps = {
   searchParams?: Promise<{
@@ -15,6 +16,7 @@ export default async function NewPasswordPage({ searchParams }: PageProps) {
 
   return (
     <main className="min-h-screen bg-[#f8fbfb] px-5 py-8 text-[#102f36]">
+      <PublicThemeReset />
       <section className="mx-auto mt-10 w-full max-w-[520px] rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_24px_70px_rgba(15,60,67,0.08)]">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#edf6f5] text-[#0b5d6b]">
           <KeyRound className="h-5 w-5" />
@@ -26,7 +28,7 @@ export default async function NewPasswordPage({ searchParams }: PageProps) {
 
         {params?.error ? (
           <div className="mt-5 rounded-lg border border-[#f3c3bd] bg-[#fff7f5] px-4 py-3 text-sm text-[#9f2d20]">
-            Nao foi possivel atualizar. Confira se as senhas coincidem e tente novamente.
+            Não foi possível atualizar. Confira se as senhas coincidem e tente novamente.
           </div>
         ) : null}
 

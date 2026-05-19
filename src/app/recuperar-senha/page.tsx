@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MessageCircle } from "lucide-react";
+import { PublicThemeReset } from "@/components/public-theme-reset";
 
 type PageProps = {
   searchParams?: Promise<{ next?: string }>;
@@ -12,6 +13,7 @@ export default async function RecoverPasswordPage({ searchParams }: PageProps) {
 
   return (
     <main className="min-h-screen bg-[#f8fbfb] px-5 py-8 text-[#102f36]">
+      <PublicThemeReset />
       <div className="mx-auto grid min-h-[calc(100vh-64px)] w-full max-w-[980px] overflow-hidden rounded-xl border border-[#dfe8e7] bg-white shadow-[0_24px_70px_rgba(15,60,67,0.08)] lg:grid-cols-[0.8fr_1fr]">
         <section className="flex flex-col justify-between bg-[#0d3640] p-8 text-white md:p-10">
           <div>
@@ -25,12 +27,12 @@ export default async function RecoverPasswordPage({ searchParams }: PageProps) {
               </div>
             </div>
             <div className="mt-16 max-w-sm">
-              <p className="text-sm font-medium text-[#9cc9c8]">Recuperacao segura</p>
+              <p className="text-sm font-medium text-[#9cc9c8]">Recuperação segura</p>
               <h1 className="mt-3 text-3xl font-semibold tracking-tight">
-                Receba um codigo pelo WhatsApp cadastrado.
+                Receba um código pelo WhatsApp cadastrado.
               </h1>
               <p className="mt-5 text-sm leading-6 text-[#c7d8d9]">
-                O codigo expira em poucos minutos e libera apenas a criacao de uma nova senha.
+                O código expira em poucos minutos e libera apenas a criação de uma nova senha.
               </p>
             </div>
           </div>
@@ -41,9 +43,9 @@ export default async function RecoverPasswordPage({ searchParams }: PageProps) {
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#edf6f5] text-[#0b5d6b]">
               <MessageCircle className="h-5 w-5" />
             </div>
-            <h2 className="mt-6 text-2xl font-semibold">Enviar codigo</h2>
+            <h2 className="mt-6 text-2xl font-semibold">Enviar código</h2>
             <p className="mt-2 text-sm leading-6 text-[#6f8588]">
-              Informe o WhatsApp ou e-mail usado no CRM. Se estiver cadastrado, enviaremos um codigo de seis digitos.
+              Informe o WhatsApp ou e-mail usado no CRM. Se estiver cadastrado, enviaremos um código de seis dígitos.
             </p>
 
             <form className="mt-7 space-y-4" action="/api/auth/request-whatsapp-reset" method="post">
@@ -60,7 +62,7 @@ export default async function RecoverPasswordPage({ searchParams }: PageProps) {
                 />
               </label>
               <button className="flex h-11 w-full items-center justify-center rounded-lg bg-[#0b5d6b] text-sm font-medium text-white transition hover:bg-[#084d59]">
-                Enviar codigo
+                Enviar código
               </button>
             </form>
 

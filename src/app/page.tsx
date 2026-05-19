@@ -13,19 +13,21 @@ import {
   Stethoscope,
   UsersRound,
 } from "lucide-react";
+import { DemoLeadForm } from "@/components/demo-lead-form";
+import { PublicThemeReset } from "@/components/public-theme-reset";
 
 const careFlow = [
   {
     label: "WhatsApp recebido",
-    text: "A IA entende contexto, intencao e urgencia sem exigir que a recepcao leia tudo manualmente.",
+    text: "A IA entende contexto, intenção e urgência sem exigir que a recepção leia tudo manualmente.",
   },
   {
     label: "Agenda organizada",
-    text: "Agendamentos, retornos e bloqueios aparecem em uma rotina visual para medico e equipe.",
+    text: "Agendamentos, retornos e bloqueios aparecem em uma rotina visual para médico e equipe.",
   },
   {
     label: "Paciente acompanhado",
-    text: "Follow-ups e lembretes podem ser preparados ou enviados conforme a politica da clinica.",
+    text: "Follow-ups e lembretes podem ser preparados ou enviados conforme a política da clínica.",
   },
 ];
 
@@ -38,17 +40,17 @@ const agents = [
   {
     icon: CalendarCheck,
     title: "Agente de agenda",
-    body: "Sugere encaixes, bloqueia horarios e organiza consultas sem transformar a recepcao em planilha.",
+    body: "Sugere encaixes, bloqueia horários e organiza consultas sem transformar a recepção em planilha.",
   },
   {
     icon: PhoneCall,
-    title: "Assessor do medico",
-    body: "Recebe comandos por WhatsApp/audio, monta plano e pede confirmacao antes de avisar pacientes.",
+    title: "Assessor do médico",
+    body: "Recebe comandos por WhatsApp/áudio, monta plano e pede confirmação antes de avisar pacientes.",
   },
   {
     icon: ShieldCheck,
-    title: "Governanca clinica",
-    body: "Separa medico, admin e secretaria, protegendo informacoes sensiveis e mantendo auditoria.",
+    title: "Governança clínica",
+    body: "Separa médico, admin e secretária, protegendo informações sensíveis e mantendo auditoria.",
   },
 ];
 
@@ -60,23 +62,23 @@ const dashboardSignals = [
 
 const promises = [
   "Menos pacientes perdidos por demora no WhatsApp",
-  "Rotina clara para recepcao e medico",
-  "Follow-up sem depender de memoria manual",
-  "Permissoes separadas para equipe e dados clinicos",
+  "Rotina clara para recepção e médico",
+  "Follow-up sem depender de memória manual",
+  "Permissões separadas para equipe e dados clínicos",
 ];
 
 const painPoints = [
   {
-    title: "A recepcao vive apagando incendio",
-    body: "Mensagens chegam fora de ordem, pacientes somem, retornos ficam esquecidos e o medico so percebe quando a agenda ja perdeu oportunidade.",
+    title: "A recepção vive apagando incêndio",
+    body: "Mensagens chegam fora de ordem, pacientes somem, retornos ficam esquecidos e o médico só percebe quando a agenda já perdeu oportunidade.",
   },
   {
-    title: "O WhatsApp guarda informacao demais",
-    body: "Sem uma camada de leitura, a clinica precisa abrir conversa por conversa para entender o que aconteceu no atendimento.",
+    title: "O WhatsApp guarda informação demais",
+    body: "Sem uma camada de leitura, a clínica precisa abrir conversa por conversa para entender o que aconteceu no atendimento.",
   },
   {
-    title: "Agenda e atendimento nao conversam",
-    body: "Paciente pede horario no WhatsApp, confirma depois, muda de ideia e a equipe precisa reconstruir tudo manualmente.",
+    title: "Agenda e atendimento não conversam",
+    body: "Paciente pede horário no WhatsApp, confirma depois, muda de ideia e a equipe precisa reconstruir tudo manualmente.",
   },
 ];
 
@@ -84,28 +86,29 @@ const useCases = [
   "Paciente novo pedindo primeira consulta",
   "Paciente recorrente que precisa marcar retorno",
   "Lead curioso comparando valores e disponibilidade",
-  "Conversa parada depois da resposta da recepcao",
-  "Medico cancelou um dia e precisa avisar pacientes",
-  "Secretaria precisa mexer na agenda sem acessar dados clinicos",
+  "Conversa parada depois da resposta da recepção",
+  "Médico cancelou um dia e precisa avisar pacientes",
+  "Secretária precisa mexer na agenda sem acessar dados clínicos",
 ];
 
 const securityItems = [
-  ["LGPD por perfil", "Medico, admin e secretaria podem ter permissoes diferentes."],
-  ["Auditoria", "Acoes da IA, da equipe e dos workflows devem ficar registradas."],
-  ["Sem diagnostico por IA", "A IA ajuda no atendimento e na organizacao, sem substituir decisao clinica."],
-  ["Dados minimos", "Avisos por WhatsApp evitam expor exame, medicamento ou detalhe sensivel."],
+  ["LGPD por perfil", "Médico, admin e secretária podem ter permissões diferentes."],
+  ["Auditoria", "Ações da IA, da equipe e dos workflows devem ficar registradas."],
+  ["Sem diagnóstico por IA", "A IA ajuda no atendimento e na organização, sem substituir decisão clínica."],
+  ["Dados mínimos", "Avisos por WhatsApp evitam expor exame, medicamento ou detalhe sensível."],
 ];
 
 const roadmapItems = [
-  "Dashboard do cliente com metricas de WhatsApp, agenda e oportunidades",
-  "Assessor de WhatsApp para comandos por audio ou texto do medico",
-  "Follow-up assistido para pacientes que nao responderam ou precisam retornar",
-  "Landing, funil de demonstracao e planos comerciais da AuraLync",
+  "Dashboard do cliente com métricas de WhatsApp, agenda e oportunidades",
+  "Assessor de WhatsApp para comandos por áudio ou texto do médico",
+  "Follow-up assistido para pacientes que não responderam ou precisam retornar",
+  "Landing, funil de demonstração e planos comerciais da AuraLync",
 ];
 
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-[#fbfdfd] text-[#102f36]">
+      <PublicThemeReset />
       <header className="sticky top-0 z-20 border-b border-[#e5eeee] bg-[#fbfdfd]/88 px-5 py-4 backdrop-blur-xl md:px-8">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
@@ -124,7 +127,7 @@ export default function LandingPage() {
                 AURALYNC
               </span>
               <span className="block text-xs text-[#6f8588]">
-                Inteligencia para clinicas
+                Inteligência para clínicas
               </span>
             </span>
           </Link>
@@ -153,16 +156,16 @@ export default function LandingPage() {
           <div className="reveal-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#dfe8e7] bg-white px-3 py-1.5 text-xs font-medium text-[#0b5d6b] shadow-[0_10px_30px_rgba(15,60,67,0.04)]">
               <Sparkles className="h-3.5 w-3.5" />
-              Uma camada de inteligencia sobre a recepcao
+              Uma camada de inteligência sobre a recepção
             </div>
 
             <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-[#102f36] md:text-7xl">
-              Atendimento medico mais claro, humano e previsivel.
+              Atendimento médico mais claro, humano e previsível.
             </h1>
 
             <p className="mt-7 max-w-2xl text-base leading-8 text-[#60777a] md:text-lg">
               A AuraLync organiza WhatsApp, agenda, retornos e sinais de
-              oportunidade em uma experiencia leve para clinicas que precisam
+              oportunidade em uma experiência leve para clínicas que precisam
               vender melhor sem perder controle operacional.
             </p>
 
@@ -171,7 +174,7 @@ export default function LandingPage() {
                 href="#demonstracao"
                 className="premium-action flex h-12 items-center gap-2 rounded-lg bg-[#0b5d6b] px-5 text-sm font-semibold text-white transition hover:bg-[#084d59]"
               >
-                Agendar uma demonstracao
+                Agendar uma demonstração
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -201,7 +204,7 @@ export default function LandingPage() {
                       Preview AuraLync
                     </p>
                     <h2 className="mt-2 text-2xl font-semibold text-[#102f36]">
-                      Hoje na clinica
+                      Hoje na clínica
                     </h2>
                   </div>
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#0b5d6b] shadow-[0_12px_30px_rgba(15,60,67,0.06)]">
@@ -229,10 +232,10 @@ export default function LandingPage() {
                     </span>
                     <div>
                       <p className="text-sm font-semibold text-[#102f36]">
-                        Pamela quer marcar consulta ginecologica
+                        Pamela quer marcar consulta ginecológica
                       </p>
                       <p className="mt-1 text-xs text-[#789093]">
-                        IA sugeriu horario, follow-up e proxima acao.
+                        IA sugeriu horário, follow-up e próxima ação.
                       </p>
                     </div>
                   </div>
@@ -247,7 +250,7 @@ export default function LandingPage() {
                       Assessor WhatsApp
                     </p>
                     <p className="mt-2 text-sm leading-6 text-[#31575d]">
-                      Medico envia audio, a IA monta plano e pede confirmacao.
+                      Médico envia áudio, a IA monta plano e pede confirmação.
                     </p>
                   </div>
                   <div className="rounded-2xl bg-white p-4">
@@ -255,7 +258,7 @@ export default function LandingPage() {
                       Segurança
                     </p>
                     <p className="mt-2 text-sm leading-6 text-[#31575d]">
-                      Dados clinicos ficam restritos a perfis autorizados.
+                      Dados clínicos ficam restritos a perfis autorizados.
                     </p>
                   </div>
                 </div>
@@ -272,7 +275,7 @@ export default function LandingPage() {
               Jornada conectada
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              Do primeiro contato ao retorno, a recepcao ganha contexto.
+              Do primeiro contato ao retorno, a recepção ganha contexto.
             </h2>
           </div>
 
@@ -306,7 +309,7 @@ export default function LandingPage() {
               O problema real
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              A clinica nao perde paciente por falta de ferramenta. Perde por falta de contexto.
+              A clínica não perde paciente por falta de ferramenta. Perde por falta de contexto.
             </h2>
           </div>
 
@@ -346,7 +349,7 @@ export default function LandingPage() {
             </div>
             <p className="max-w-sm text-sm leading-7 text-[#60777a]">
               A plataforma trabalha como uma camada inteligente sobre WhatsApp,
-              agenda e operacao da clinica.
+              agenda e operação da clínica.
             </p>
           </div>
 
@@ -389,8 +392,8 @@ export default function LandingPage() {
               O que a AuraLync precisa enxergar antes da equipe perder tempo.
             </h2>
             <p className="mt-5 text-sm leading-7 text-[#60777a]">
-              A proposta nao e substituir a recepcao. E dar a ela uma leitura
-              pronta do que importa, com proximas acoes claras.
+              A proposta não é substituir a recepção. É dar a ela uma leitura
+              pronta do que importa, com próximas ações claras.
             </p>
           </div>
 
@@ -421,15 +424,15 @@ export default function LandingPage() {
               <Stethoscope className="h-6 w-6" />
             </div>
             <h2 className="mt-6 text-3xl font-semibold tracking-tight text-[#102f36] md:text-4xl">
-              Feita para clinicas que precisam crescer sem perder padrao de atendimento.
+              Feita para clínicas que precisam crescer sem perder padrão de atendimento.
             </h2>
           </div>
 
           <div className="grid gap-3">
             {[
-              ["Medico", "Acompanha agenda, retornos e informacoes clinicas autorizadas."],
-              ["Secretaria", "Resolve conversa, encaixe, confirmacao e follow-up operacional."],
-              ["Gestor", "Enxerga volume, conversao, gargalos e oportunidades por periodo."],
+              ["Médico", "Acompanha agenda, retornos e informações clínicas autorizadas."],
+              ["Secretária", "Resolve conversa, encaixe, confirmação e follow-up operacional."],
+              ["Gestor", "Enxerga volume, conversão, gargalos e oportunidades por período."],
             ].map(([title, body]) => (
               <div key={title} className="rounded-2xl bg-white p-5 shadow-[0_12px_34px_rgba(15,60,67,0.04)]">
                 <div className="flex items-start gap-3">
@@ -467,19 +470,19 @@ export default function LandingPage() {
 
               <div className="mt-5 space-y-3">
                 <div className="max-w-[82%] rounded-2xl rounded-tl-md bg-white px-4 py-3 text-sm leading-6 text-[#31575d] shadow-[0_10px_28px_rgba(15,60,67,0.04)]">
-                  Oi, tem horario com a Dra. Camila essa semana?
+                  Oi, tem horário com a Dra. Camila essa semana?
                 </div>
                 <div className="ml-auto max-w-[84%] rounded-2xl rounded-tr-md bg-[#edf6f5] px-4 py-3 text-sm leading-6 text-[#31575d]">
                   Temos disponibilidade na sexta. Posso te passar os melhores
-                  horarios para chegar com menor espera.
+                  horários para chegar com menor espera.
                 </div>
                 <div className="rounded-2xl border border-[#dfe8e7] bg-white p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#789093]">
                     Leitura da IA
                   </p>
                   <p className="mt-2 text-sm leading-6 text-[#31575d]">
-                    Paciente com intencao clara de agendamento. Recomendar
-                    horarios e registrar oportunidade na agenda.
+                    Paciente com intenção clara de agendamento. Recomendar
+                    horários e registrar oportunidade na agenda.
                   </p>
                 </div>
               </div>
@@ -488,15 +491,15 @@ export default function LandingPage() {
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6f8588]">
-              Experiencia do produto
+              Experiência do produto
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              Um painel que mostra o que fazer, nao apenas o que aconteceu.
+              Um painel que mostra o que fazer, não apenas o que aconteceu.
             </h2>
             <p className="mt-5 text-sm leading-7 text-[#60777a]">
-              O CRM nasce com foco em decisao operacional: quem precisa de
+              O CRM nasce com foco em decisão operacional: quem precisa de
               resposta, quem pode agendar, quem deve retornar, qual paciente
-              exige humano e o que o medico precisa saber hoje.
+              exige humano e o que o médico precisa saber hoje.
             </p>
           </div>
         </div>
@@ -506,10 +509,10 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-[1200px] gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6f8588]">
-              Seguranca e LGPD
+              Segurança e LGPD
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              Automatizar atendimento em saude exige limite, permissao e registro.
+              Automatizar atendimento em saúde exige limite, permissão e registro.
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -531,7 +534,7 @@ export default function LandingPage() {
               Roadmap da plataforma
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              Comecamos pelo que gera clareza imediata. Depois expandimos para venda, planos e apps.
+              Começamos pelo que gera clareza imediata. Depois expandimos para venda, planos e apps.
             </h2>
           </div>
           <div className="mt-8 grid gap-3 md:grid-cols-2">
@@ -551,40 +554,27 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-[1200px] gap-8 rounded-[28px] border border-[#dfe8e7] bg-white p-6 shadow-[0_24px_70px_rgba(15,60,67,0.06)] md:grid-cols-[1fr_380px] md:p-9">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6f8588]">
-              Demonstracao
+              Demonstração
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#102f36] md:text-5xl">
-              Vamos mapear onde sua clinica perde tempo, pacientes e retorno.
+              Vamos mapear onde sua clínica perde tempo, pacientes e retorno.
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-[#60777a]">
-              A reuniao de demonstracao mostra como a AuraLync pode atuar sobre
-              WhatsApp, agenda, follow-up, permissao da equipe e relatorios de
-              atendimento. Planos comerciais entram depois da validacao da
+              A reunião de demonstração mostra como a AuraLync pode atuar sobre
+              WhatsApp, agenda, follow-up, permissão da equipe e relatórios de
+              atendimento. Planos comerciais entram depois da validação da
               vitrine.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#dfe8e7] bg-[#f8fbfb] p-5">
-            <p className="text-sm font-semibold text-[#102f36]">
-              Proximo passo
-            </p>
-            <p className="mt-2 text-sm leading-6 text-[#60777a]">
-              Conectar esse botao ao WhatsApp, formulario ou calendario oficial
-              da AuraLync.
-            </p>
+          <div className="space-y-3">
+            <DemoLeadForm />
             <Link
               href="/login"
               className="mt-5 flex h-11 items-center justify-center gap-2 rounded-lg border border-[#dfe8e7] bg-white text-sm font-semibold text-[#0b5d6b] transition hover:bg-[#edf6f5]"
             >
-              Area do cliente
+              Área do cliente
               <LockKeyhole className="h-4 w-4" />
-            </Link>
-            <Link
-              href="#"
-              className="premium-action mt-3 flex h-11 items-center justify-center gap-2 rounded-lg bg-[#0b5d6b] text-sm font-semibold text-white transition hover:bg-[#084d59]"
-            >
-              Quero uma demonstracao
-              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
