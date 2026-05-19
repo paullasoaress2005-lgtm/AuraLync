@@ -40,17 +40,17 @@ export function DemoLeadForm() {
 
   const whatsappText = useMemo(() => {
     return [
-      "*Nova solicitação de demonstração AuraLync*",
+      "Olá! Conheci o perfil da AuraLync e quero entender como a automação de ponta a ponta pode melhorar o atendimento do meu negócio.",
       "",
-      `Nome: ${form.name || "não informado"}`,
-      `WhatsApp: ${form.phone || "não informado"}`,
-      `E-mail: ${form.email || "não informado"}`,
-      `Área médica: ${form.area || "não informado"}`,
-      `Clínica/empresa: ${form.clinic || "não informado"}`,
-      `Mensagem: ${form.message || "Quero entender como a AuraLync pode melhorar o atendimento da minha clínica."}`,
+      "Meus dados para a demonstração:",
+      `- Nome: ${form.name || "não informado"}`,
+      `- WhatsApp: ${form.phone || "não informado"}`,
+      `- E-mail: ${form.email || "não informado"}`,
+      `- Área médica/segmento: ${form.area || "não informado"}`,
+      `- Clínica/empresa: ${form.clinic || "não informado"}`,
+      `- Principal objetivo: ${form.message || "Organizar WhatsApp, agenda, follow-up e análise das conversas."}`,
       "",
-      "Origem: Landing AuraLync",
-      "Ação esperada: cadastrar lead, responder com proposta de reunião e manter contexto para o CRM.",
+      "Pode me chamar para agendarmos uma demonstração?",
     ].join("\n");
   }, [form]);
 
