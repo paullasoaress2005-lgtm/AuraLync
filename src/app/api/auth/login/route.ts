@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isRateLimited, safeEmail, safePath } from "@/lib/security";
 
 type SupabasePasswordResponse = {
   access_token?: string;
@@ -47,10 +48,14 @@ async function userHasProfile(url: string, key: string, userId: string) {
 }
 
 export async function POST(request: NextRequest) {
+  if (isRateLimited(request, "auth:login", 8, 10 * 60 * 1000)) {
+    return NextResponse.redirect(new URL("/login?error=rate_limit", request.url), 303);
+  }
+
   const formData = await request.formData();
-  const email = String(formData.get("email") ?? "").trim();
+  const email = safeEmail(formData.get("email"));
   const password = String(formData.get("password") ?? "");
-  const nextPath = String(formData.get("next") ?? "/dashboard");
+  const nextPath = safePath(formData.get("next"));
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -84,9 +89,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.redirect(new URL("/login?error=profile", request.url), 303);
   }
 
-  const safeNextPath =
-    nextPath.startsWith("/") && !nextPath.startsWith("//") ? nextPath : "/dashboard";
-  const redirect = NextResponse.redirect(new URL(safeNextPath, request.url), 303);
+  const redirect = NextResponse.redirect(new URL(nextPath, request.url), 303);
   redirect.cookies.set(
     "al_access_token",
     payload.access_token,

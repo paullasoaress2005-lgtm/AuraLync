@@ -55,7 +55,10 @@ export async function supabaseFetch<T>(path: string, init?: RequestInit): Promis
 }
 
 export function normalizeIdentifier(value: FormDataEntryValue | null) {
-  return String(value ?? "").trim();
+  return String(value ?? "")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .trim()
+    .slice(0, 160);
 }
 
 export function normalizePhone(value: string) {
@@ -92,9 +95,15 @@ export async function sendRecoveryCodeByWhatsApp(input: {
   code: string;
 }) {
   const webhookUrl = process.env.N8N_PASSWORD_RECOVERY_WEBHOOK_URL;
+  const webhookToken = process.env.N8N_PASSWORD_RECOVERY_TOKEN;
 
   if (!webhookUrl) {
     console.warn("N8N_PASSWORD_RECOVERY_WEBHOOK_URL is not configured.");
+    return false;
+  }
+
+  if (process.env.NODE_ENV === "production" && !webhookToken) {
+    console.warn("N8N_PASSWORD_RECOVERY_TOKEN is required in production.");
     return false;
   }
 
@@ -102,9 +111,7 @@ export async function sendRecoveryCodeByWhatsApp(input: {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(process.env.N8N_PASSWORD_RECOVERY_TOKEN
-        ? { Authorization: `Bearer ${process.env.N8N_PASSWORD_RECOVERY_TOKEN}` }
-        : {}),
+      ...(webhookToken ? { Authorization: `Bearer ${webhookToken}` } : {}),
     },
     body: JSON.stringify({
       phone: input.phone,

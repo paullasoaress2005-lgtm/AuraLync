@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAppointment } from "@/lib/appointments";
 import { getCurrentClient } from "@/lib/current-client";
+import { isRateLimited, rateLimitResponse, safeText } from "@/lib/security";
 
 const ALLOWED_STATUSES = ["approved", "cancelled"] as const;
 
@@ -234,6 +235,10 @@ async function createResponseRule(input: {
 
 export async function PATCH(request: NextRequest) {
   try {
+    if (isRateLimited(request, "ai:command-requests:update", 80, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const client = await getCurrentClient();
     const config = supabaseConfig();
 
@@ -248,8 +253,8 @@ export async function PATCH(request: NextRequest) {
       id?: unknown;
       status?: unknown;
     };
-    const id = String(body.id ?? "").trim();
-    const status = String(body.status ?? "").trim();
+    const id = safeText(body.id, 80);
+    const status = safeText(body.status, 30);
 
     if (!id || !ALLOWED_STATUSES.includes(status as (typeof ALLOWED_STATUSES)[number])) {
       return NextResponse.json(
@@ -308,6 +313,10 @@ export async function PATCH(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    if (isRateLimited(request, "ai:command-requests:execute", 40, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const client = await getCurrentClient();
     const config = supabaseConfig();
 
@@ -319,7 +328,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = (await request.json()) as { id?: unknown };
-    const id = String(body.id ?? "").trim();
+    const id = safeText(body.id, 80);
 
     if (!id) {
       return NextResponse.json(

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { applySecurityHeaders } from "@/lib/security";
 
 const PUBLIC_PATHS = ["/", "/login", "/recuperar-senha"];
 const PUBLIC_API_PATHS = ["/api/auth"];
@@ -156,7 +157,7 @@ export async function proxy(request: NextRequest) {
       clearAuthCookies(response);
     }
 
-    return response;
+    return applySecurityHeaders(response);
   }
 
   if (isPublic && session.ok && pathname === "/login") {

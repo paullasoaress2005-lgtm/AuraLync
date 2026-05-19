@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isRateLimited } from "@/lib/security";
 import {
   findRecoveryUser,
   generateRecoveryCode,
@@ -10,6 +11,10 @@ import {
 } from "@/lib/password-recovery";
 
 export async function POST(request: NextRequest) {
+  if (isRateLimited(request, "auth:whatsapp-reset", 5, 15 * 60 * 1000)) {
+    return NextResponse.redirect(new URL("/recuperar-senha/suporte", request.url), 303);
+  }
+
   const formData = await request.formData();
   const identifier = normalizeIdentifier(formData.get("identifier"));
   const nextPath = safeNextPath(formData.get("next"));

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isRateLimited, isStrongPassword } from "@/lib/security";
 import {
   safeNextPath,
   supabaseConfig,
@@ -15,13 +16,17 @@ function redirectWithError(request: NextRequest, token: string, nextPath: string
 }
 
 export async function POST(request: NextRequest) {
+  if (isRateLimited(request, "auth:update-password", 6, 15 * 60 * 1000)) {
+    return NextResponse.redirect(new URL("/recuperar-senha/suporte", request.url), 303);
+  }
+
   const formData = await request.formData();
   const token = String(formData.get("token") ?? "");
   const password = String(formData.get("password") ?? "");
   const confirmPassword = String(formData.get("confirmPassword") ?? "");
   const nextPath = safeNextPath(formData.get("next"));
 
-  if (!token || password.length < 8 || password !== confirmPassword) {
+  if (!token || !isStrongPassword(password) || password !== confirmPassword) {
     return redirectWithError(request, token, nextPath);
   }
 

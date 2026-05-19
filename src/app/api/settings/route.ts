@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getClinicSettings, updateClinicSettings } from "@/lib/settings";
+import { isRateLimited, rateLimitResponse, safeEmail, safeText } from "@/lib/security";
 
 function formBoolean(formData: FormData, key: string) {
   return formData.get(key) === "on" || formData.get(key) === "true";
@@ -20,17 +21,21 @@ export async function GET() {
 
 export async function PATCH(request: NextRequest) {
   try {
+    if (isRateLimited(request, "settings:patch", 40, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const formData = await request.formData();
     const settings = await updateClinicSettings({
-      displayName: String(formData.get("displayName") ?? "").trim(),
-      specialty: String(formData.get("specialty") ?? "").trim(),
-      contactEmail: String(formData.get("contactEmail") ?? "").trim(),
-      timezone: String(formData.get("timezone") ?? "America/Fortaleza").trim(),
-      weekdayStart: String(formData.get("weekdayStart") ?? "08:00").trim(),
-      weekdayEnd: String(formData.get("weekdayEnd") ?? "18:00").trim(),
+      displayName: safeText(formData.get("displayName"), 120),
+      specialty: safeText(formData.get("specialty"), 80),
+      contactEmail: safeEmail(formData.get("contactEmail")),
+      timezone: safeText(formData.get("timezone") ?? "America/Fortaleza", 80),
+      weekdayStart: safeText(formData.get("weekdayStart") ?? "08:00", 10),
+      weekdayEnd: safeText(formData.get("weekdayEnd") ?? "18:00", 10),
       saturdayEnabled: formBoolean(formData, "saturdayEnabled"),
-      saturdayStart: String(formData.get("saturdayStart") ?? "08:00").trim(),
-      saturdayEnd: String(formData.get("saturdayEnd") ?? "12:00").trim(),
+      saturdayStart: safeText(formData.get("saturdayStart") ?? "08:00", 10),
+      saturdayEnd: safeText(formData.get("saturdayEnd") ?? "12:00", 10),
       defaultAppointmentDuration: Number(
         formData.get("defaultAppointmentDuration") ?? 50,
       ),

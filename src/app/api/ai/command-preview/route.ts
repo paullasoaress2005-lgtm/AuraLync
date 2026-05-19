@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentClient, getCurrentUserId } from "@/lib/current-client";
+import { isRateLimited, rateLimitResponse, safeText } from "@/lib/security";
 
 type CommandType =
   | "block_schedule"
@@ -232,6 +233,10 @@ function previewFor(command: string, clientName: string): CommandPreview {
 
 export async function POST(request: NextRequest) {
   try {
+    if (isRateLimited(request, "ai:command-preview", 60, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const client = await getCurrentClient();
 
     if (!client) {
@@ -242,7 +247,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = (await request.json()) as { command?: unknown };
-    const command = String(body.command ?? "").trim();
+    const command = safeText(body.command, 1200);
 
     if (!command) {
       return NextResponse.json(

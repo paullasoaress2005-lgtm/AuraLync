@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isRateLimited } from "@/lib/security";
 import {
   findRecoveryUser,
   hashRecoveryCode,
@@ -18,6 +19,10 @@ function codePage(request: NextRequest, params: Record<string, string>) {
 }
 
 export async function POST(request: NextRequest) {
+  if (isRateLimited(request, "auth:verify-code", 10, 15 * 60 * 1000)) {
+    return NextResponse.redirect(new URL("/recuperar-senha/suporte", request.url), 303);
+  }
+
   const formData = await request.formData();
   const identifier = normalizeIdentifier(formData.get("identifier"));
   const code = normalizePhone(String(formData.get("code") ?? ""));

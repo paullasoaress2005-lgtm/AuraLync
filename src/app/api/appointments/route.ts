@@ -5,6 +5,7 @@ import {
   updateAppointment,
   updateAppointmentStatus,
 } from "@/lib/appointments";
+import { isRateLimited, rateLimitResponse, safeText } from "@/lib/security";
 
 export async function GET() {
   const data = await getCalendarAppointments();
@@ -13,16 +14,20 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    if (isRateLimited(request, "appointments:write", 80, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const formData = await request.formData();
-    const action = String(formData.get("action") ?? "create").trim();
-    const patientName = String(formData.get("patientName") ?? "").trim();
-    const patientPhone = String(formData.get("patientPhone") ?? "").replace(/\D/g, "");
-    const title = String(formData.get("title") ?? "Consulta").trim();
-    const specialty = String(formData.get("specialty") ?? "ginecologia").trim();
-    const appointmentDate = String(formData.get("appointmentDate") ?? "").trim();
-    const appointmentTime = String(formData.get("appointmentTime") ?? "").trim();
+    const action = safeText(formData.get("action") ?? "create", 30);
+    const patientName = safeText(formData.get("patientName"), 120);
+    const patientPhone = safeText(formData.get("patientPhone"), 32).replace(/\D/g, "");
+    const title = safeText(formData.get("title") ?? "Consulta", 160);
+    const specialty = safeText(formData.get("specialty") ?? "ginecologia", 80);
+    const appointmentDate = safeText(formData.get("appointmentDate"), 20);
+    const appointmentTime = safeText(formData.get("appointmentTime"), 10);
     const durationMinutes = Number(formData.get("durationMinutes") ?? 50);
-    const notes = String(formData.get("notes") ?? "").trim();
+    const notes = safeText(formData.get("notes"), 1000);
 
     if (action === "block") {
       if (!appointmentDate || !appointmentTime) {
@@ -82,9 +87,13 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    if (isRateLimited(request, "appointments:write", 80, 60 * 1000)) {
+      return rateLimitResponse();
+    }
+
     const formData = await request.formData();
-    const action = String(formData.get("action") ?? "update").trim();
-    const appointmentId = String(formData.get("appointmentId") ?? "").trim();
+    const action = safeText(formData.get("action") ?? "update", 30);
+    const appointmentId = safeText(formData.get("appointmentId"), 80);
 
     if (!appointmentId) {
       return NextResponse.json(
@@ -94,7 +103,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     if (action === "status") {
-      const status = String(formData.get("status") ?? "").trim();
+      const status = safeText(formData.get("status"), 30);
       const allowed = [
         "scheduled",
         "confirmed",
@@ -119,14 +128,14 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ ok: true, appointment });
     }
 
-    const patientName = String(formData.get("patientName") ?? "").trim();
-    const patientPhone = String(formData.get("patientPhone") ?? "").replace(/\D/g, "");
-    const title = String(formData.get("title") ?? "Consulta").trim();
-    const specialty = String(formData.get("specialty") ?? "ginecologia").trim();
-    const appointmentDate = String(formData.get("appointmentDate") ?? "").trim();
-    const appointmentTime = String(formData.get("appointmentTime") ?? "").trim();
+    const patientName = safeText(formData.get("patientName"), 120);
+    const patientPhone = safeText(formData.get("patientPhone"), 32).replace(/\D/g, "");
+    const title = safeText(formData.get("title") ?? "Consulta", 160);
+    const specialty = safeText(formData.get("specialty") ?? "ginecologia", 80);
+    const appointmentDate = safeText(formData.get("appointmentDate"), 20);
+    const appointmentTime = safeText(formData.get("appointmentTime"), 10);
     const durationMinutes = Number(formData.get("durationMinutes") ?? 50);
-    const notes = String(formData.get("notes") ?? "").trim();
+    const notes = safeText(formData.get("notes"), 1000);
 
     if (!patientName || !appointmentDate || !appointmentTime) {
       return NextResponse.json(

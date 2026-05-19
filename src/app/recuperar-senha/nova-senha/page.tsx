@@ -23,7 +23,8 @@ export default async function NewPasswordPage({ searchParams }: PageProps) {
         </div>
         <h1 className="mt-6 text-2xl font-semibold">Criar nova senha</h1>
         <p className="mt-2 text-sm leading-6 text-[#6f8588]">
-          Use uma senha com pelo menos 8 caracteres. Depois disso, entre novamente no CRM.
+          Use pelo menos 10 caracteres, com letra maiúscula, minúscula, número
+          e símbolo. Depois disso, entre novamente no CRM.
         </p>
 
         {params?.error ? (
@@ -42,7 +43,7 @@ export default async function NewPasswordPage({ searchParams }: PageProps) {
             <input
               name="password"
               type="password"
-              minLength={8}
+              minLength={10}
               required
               className="mt-2 h-11 w-full rounded-lg border border-[#dfe8e7] bg-[#fbfdfd] px-3 text-sm outline-[#0b5d6b]"
             />
@@ -54,7 +55,7 @@ export default async function NewPasswordPage({ searchParams }: PageProps) {
             <input
               name="confirmPassword"
               type="password"
-              minLength={8}
+              minLength={10}
               required
               className="mt-2 h-11 w-full rounded-lg border border-[#dfe8e7] bg-[#fbfdfd] px-3 text-sm outline-[#0b5d6b]"
             />

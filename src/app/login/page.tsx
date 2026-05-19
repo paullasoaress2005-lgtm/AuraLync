@@ -19,6 +19,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       ? "Configuração local ausente. O CRM precisa das variáveis do Supabase no servidor."
       : params?.error === "profile"
         ? "Login autenticado, mas este usuário ainda não está vinculado a uma clínica."
+        : params?.error === "rate_limit"
+          ? "Muitas tentativas de acesso. Aguarde alguns minutos e tente novamente."
         : params?.error
           ? "Não foi possível entrar. Confira e-mail e senha ou solicite recuperação."
           : null;
