@@ -113,14 +113,14 @@ export function SettingsPanel({ payload }: Props) {
     <form action={submitSettings} className="grid gap-6 xl:grid-cols-[1fr_360px]">
       <section className="space-y-6">
         {!schemaReady ? (
-          <section className="rounded-xl border border-[#f2dfb8] bg-[#fff8e8] p-5 text-[#8a6118]">
+          <section className="rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-5 text-[#60777a]">
             <div className="flex items-center gap-2 text-sm font-semibold">
               <Database className="h-4 w-4" />
-              Ajustes aguardando ativação no banco
+              Ajustes em modo assistido
             </div>
             <p className="mt-2 text-sm leading-6">
-              Execute o arquivo `sql/adm_system_clinic_settings.sql` no SQL
-              Editor do Supabase para ativar o salvamento real desta tela.
+              As preferências principais estão disponíveis. A equipe AuraLync
+              finaliza a persistência avançada durante a ativação do cliente.
             </p>
           </section>
         ) : null}

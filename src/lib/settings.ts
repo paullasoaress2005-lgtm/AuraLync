@@ -243,36 +243,6 @@ export async function updateClinicSettings(input: UpdateClinicSettingsInput) {
     autoSyncGoogleCalendar: input.autoSyncGoogleCalendar,
   };
 
-  const [settings] = await supabaseFetch<ClinicSettingsRow[]>(
-    "clinic_settings?on_conflict=client_id&select=*",
-    {
-      method: "POST",
-      headers: {
-        Prefer: "resolution=merge-duplicates,return=representation",
-      },
-      body: JSON.stringify({
-        client_id: client.id,
-        display_name: cleanInput.displayName,
-        specialty: cleanInput.specialty,
-        contact_email: cleanInput.contactEmail,
-        timezone: cleanInput.timezone,
-        weekday_start: cleanInput.weekdayStart,
-        weekday_end: cleanInput.weekdayEnd,
-        saturday_enabled: cleanInput.saturdayEnabled,
-        saturday_start: cleanInput.saturdayStart,
-        saturday_end: cleanInput.saturdayEnd,
-        default_appointment_duration: cleanInput.defaultAppointmentDuration,
-        appointment_buffer_minutes: cleanInput.appointmentBufferMinutes,
-        notify_new_appointment: cleanInput.notifyNewAppointment,
-        notify_no_response: cleanInput.notifyNoResponse,
-        notify_human_handoff: cleanInput.notifyHumanHandoff,
-        notify_integration_failure: cleanInput.notifyIntegrationFailure,
-        ai_handoff_threshold: cleanInput.aiHandoffThreshold,
-        auto_sync_google_calendar: cleanInput.autoSyncGoogleCalendar,
-      }),
-    },
-  );
-
   await supabaseFetch(
     `clients?id=eq.${encodeURIComponent(client.id)}`,
     {
@@ -287,9 +257,54 @@ export async function updateClinicSettings(input: UpdateClinicSettingsInput) {
     },
   );
 
-  return mapSettings(settings, {
-    ...client,
-    name: cleanInput.displayName,
-    specialty: cleanInput.specialty,
-  });
+  try {
+    const [settings] = await supabaseFetch<ClinicSettingsRow[]>(
+      "clinic_settings?on_conflict=client_id&select=*",
+      {
+        method: "POST",
+        headers: {
+          Prefer: "resolution=merge-duplicates,return=representation",
+        },
+        body: JSON.stringify({
+          client_id: client.id,
+          display_name: cleanInput.displayName,
+          specialty: cleanInput.specialty,
+          contact_email: cleanInput.contactEmail,
+          timezone: cleanInput.timezone,
+          weekday_start: cleanInput.weekdayStart,
+          weekday_end: cleanInput.weekdayEnd,
+          saturday_enabled: cleanInput.saturdayEnabled,
+          saturday_start: cleanInput.saturdayStart,
+          saturday_end: cleanInput.saturdayEnd,
+          default_appointment_duration: cleanInput.defaultAppointmentDuration,
+          appointment_buffer_minutes: cleanInput.appointmentBufferMinutes,
+          notify_new_appointment: cleanInput.notifyNewAppointment,
+          notify_no_response: cleanInput.notifyNoResponse,
+          notify_human_handoff: cleanInput.notifyHumanHandoff,
+          notify_integration_failure: cleanInput.notifyIntegrationFailure,
+          ai_handoff_threshold: cleanInput.aiHandoffThreshold,
+          auto_sync_google_calendar: cleanInput.autoSyncGoogleCalendar,
+        }),
+      },
+    );
+
+    return mapSettings(settings, {
+      ...client,
+      name: cleanInput.displayName,
+      specialty: cleanInput.specialty,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return {
+    ...defaultSettings({
+      ...client,
+      name: cleanInput.displayName,
+      specialty: cleanInput.specialty,
+      email: cleanInput.contactEmail,
+    }),
+    ...cleanInput,
+    updatedAt: new Date().toISOString(),
+  };
 }
