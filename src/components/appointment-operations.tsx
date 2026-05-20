@@ -137,7 +137,7 @@ export function AppointmentOperations({ appointments }: Props) {
       const payload = (await response.json()) as ApiPayload;
 
       if (!payload.ok) {
-        setMessage(payload.error ?? "Nao foi possivel atualizar a agenda.");
+        setMessage(payload.error ?? "Não foi possível atualizar a agenda.");
         return;
       }
 
@@ -176,7 +176,7 @@ export function AppointmentOperations({ appointments }: Props) {
     submitForm(
       "PATCH",
       formData,
-      "Horario atualizado. Google Calendar sera sincronizado.",
+      "Horário atualizado. Google Calendar será sincronizado.",
       () => setEditingAppointment(null),
     );
   }
@@ -269,8 +269,8 @@ export function AppointmentOperations({ appointments }: Props) {
                 type="button"
                 onClick={() => setEditingAppointment(appointment)}
                 className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#dfe8e7] bg-white text-[#0b5d6b] transition hover:bg-[#edf6f5]"
-                title="Editar horario"
-                aria-label="Editar horario"
+                title="Editar horário"
+                aria-label="Editar horário"
               >
                 <Pencil className="h-3.5 w-3.5" />
               </button>
@@ -304,7 +304,7 @@ export function AppointmentOperations({ appointments }: Props) {
       <form action={submitBlock} className="rounded-lg border border-[#dfe8e7] bg-white p-3">
         <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
           <CalendarClock className="h-4 w-4" />
-          Bloquear horario
+          Bloquear horário
         </div>
         <input type="hidden" name="title" value="Bloqueio manual" />
         <input type="hidden" name="specialty" value="agenda" />
@@ -363,7 +363,7 @@ export function AppointmentOperations({ appointments }: Props) {
                   Agenda
                 </p>
                 <h3 className="mt-1 text-lg font-semibold text-[#102f36]">
-                  Editar horario
+                  Editar horário
                 </h3>
               </div>
               <button
@@ -470,7 +470,7 @@ export function AppointmentOperations({ appointments }: Props) {
                 <div className="grid grid-cols-2 gap-3">
                   <label className="block">
                     <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#789093]">
-                      Duracao
+                      Duração
                     </span>
                     <input
                       name="durationMinutes"
@@ -556,12 +556,12 @@ export function AppointmentOperations({ appointments }: Props) {
               <XCircle className="h-5 w-5" />
             </div>
             <h3 className="mt-4 text-base font-semibold text-[#102f36]">
-              Cancelar este horario?
+              Cancelar este horário?
             </h3>
             <p className="mt-2 text-sm leading-6 text-[#60777a]">
               {confirmingAppointment.title} de {confirmingAppointment.patient}.
               Se houver evento no Google Calendar, ele sera removido pelo
-              workflow de sincronizacao.
+              workflow de sincronização.
             </p>
             <div className="mt-5 grid grid-cols-2 gap-2">
               <button

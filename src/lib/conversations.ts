@@ -142,9 +142,9 @@ const CLASSIFICATION_LABELS: Record<string, string> = {
 const EVENT_LABELS: Record<string, string> = {
   message_created: "Mensagem recebida",
   state_changed: "Estado atualizado",
-  classification_final: "Classificacao final",
+  classification_final: "Classificação final",
   no_response_detected: "Sem resposta detectado",
-  human_attention: "Atencao humana",
+  human_attention: "Atenção humana",
   label_synced: "Etiqueta sincronizada",
   manual_note: "Nota manual",
   error: "Erro operacional",
@@ -172,7 +172,7 @@ const PRESENTATION_PATIENTS = [
     summary:
       "Beatriz confirmou consulta com a Dra. Camila para sexta-feira e recebeu as orientacoes de chegada.",
     action: "Conferir se a consulta aparece corretamente na agenda.",
-    reason: "Paciente confirmou disponibilidade e aceitou o horario sugerido.",
+    reason: "Paciente confirmou disponibilidade e aceitou o horário sugerido.",
     appointmentTitle: "Consulta ginecologica",
     appointmentAt: "22/05/2026, 15:30",
     appointmentStatus: "scheduled",
@@ -183,9 +183,9 @@ const PRESENTATION_PATIENTS = [
     stageKey: "aguardando_resposta",
     stage: "Aguardando resposta",
     summary:
-      "Renata perguntou sobre disponibilidade para retorno e recebeu opcoes de horario para a semana.",
-    action: "Aguardar confirmacao do melhor horario para retorno.",
-    reason: "Paciente avaliando horario antes de confirmar.",
+      "Renata perguntou sobre disponibilidade para retorno e recebeu opções de horário para a semana.",
+    action: "Aguardar confirmação do melhor horário para retorno.",
+    reason: "Paciente avaliando horário antes de confirmar.",
     appointmentTitle: "Retorno ginecologico",
     appointmentAt: null,
     appointmentStatus: null,
@@ -317,7 +317,7 @@ function formatStage(stage: string | null) {
 }
 
 function formatTemperature(value: string | null) {
-  if (!value) return "Nao definida";
+  if (!value) return "Não definida";
   return value.charAt(0).toUpperCase() + value.slice(1).replaceAll("_", " ");
 }
 
@@ -371,10 +371,10 @@ function payloadText(payload: Record<string, unknown> | null) {
     const startAt =
       typeof item.start_at === "string" && item.start_at
         ? formatDateTime(item.start_at)
-        : "horario ainda indefinido";
+        : "horário ainda indefinido";
     const status =
       typeof item.status === "string" && item.status === "needs_date_or_time"
-        ? "precisa de data ou horario"
+        ? "precisa de data ou horário"
         : "sugestao detectada";
     const reason = typeof item.reason === "string" ? item.reason : "";
     return `Sugestao de agenda: ${title} em ${startAt} (${status}). ${reason}`.trim();
@@ -491,7 +491,7 @@ function fallbackData(options?: {
       },
       {
         id: "fallback-action",
-        title: "Proxima acao",
+        title: "Próxima ação",
         body: selected.action,
         meta: "Assistente IA | hoje, 14:09",
         tone: "success",
@@ -521,7 +521,7 @@ function buildConversation(
     "outros";
   const summary = presentationText(
     state?.last_ai_summary || classification?.ai_summary,
-    profile?.summary || "A IA ainda nao registrou um resumo para esta conversa.",
+    profile?.summary || "A IA ainda não registrou um resumo para esta conversa.",
     profile,
   );
   const action = presentationText(
@@ -529,7 +529,7 @@ function buildConversation(
     profile?.action ||
       (appointment
       ? "Conferir detalhes da consulta na agenda."
-        : "Acompanhar a proxima interacao antes de agir."),
+        : "Acompanhar a próxima interação antes de agir."),
     profile,
   );
   const updatedAt =
@@ -567,7 +567,7 @@ function buildConversation(
       stageKey === "sem_resposta",
     classificationLabel: classification?.label
       ? CLASSIFICATION_LABELS[classification.label] ?? classification.label
-      : "Nao classificada",
+      : "Não classificada",
     classificationConfidence: confidenceLabel(classification?.confidence ?? null),
     specialty: classification?.specialty || appointment?.specialty || "ginecologia",
     appointmentTitle: appointment
@@ -618,7 +618,7 @@ function buildTimeline(
   if (classification) {
     timeline.push({
       id: `classification-${selected.id}`,
-      title: `Classificacao: ${selected.classificationLabel}`,
+      title: `Classificação: ${selected.classificationLabel}`,
       body: presentationText(
         classification.ai_summary,
         selected.summary,
@@ -653,14 +653,14 @@ function scriptedMessages(selected: InboxConversation): InboxMessage[] {
         id: `script-${selected.id}-1`,
         author: "patient",
         authorLabel: "Paciente",
-        body: "Tem horario disponivel com a Dra. Camila essa semana?",
+        body: "Tem horário disponível com a Dra. Camila essa semana?",
         time: "10:14",
       },
       {
         id: `script-${selected.id}-2`,
         author: "ai",
         authorLabel: "Assistente IA",
-        body: "Bom dia, Beatriz. Temos disponibilidade na sexta-feira por ordem de chegada das 13:00 as 17:00. O melhor horario de chegada para menor espera e 15:30. Deseja agendar?",
+        body: "Bom dia, Beatriz. Temos disponibilidade na sexta-feira por ordem de chegada das 13:00 às 17:00. O melhor horário de chegada para menor espera é 15:30. Deseja agendar?",
         time: "10:15",
       },
       {
@@ -718,7 +718,7 @@ function scriptedMessages(selected: InboxConversation): InboxMessage[] {
       id: `script-${selected.id}-2`,
       author: "ai",
       authorLabel: "Assistente IA",
-      body: "Boa tarde, Pamela. Temos horarios disponiveis na sexta-feira por ordem de chegada das 13:00 as 17:00. Seu horario de chegada com menos tempo de espera e as 15:30. Deseja agendar?",
+      body: "Boa tarde, Pamela. Temos horários disponíveis na sexta-feira por ordem de chegada das 13:00 às 17:00. Seu horário de chegada com menos tempo de espera é às 15:30. Deseja agendar?",
       time: "14:09",
     },
     {

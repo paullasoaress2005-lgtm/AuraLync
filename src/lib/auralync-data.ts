@@ -178,7 +178,7 @@ function fallbackData(): DashboardData {
         label: "Leads quentes sem retorno",
         count: 3,
         description:
-          "Pacientes demonstraram interesse, mas a conversa esfriou depois da resposta da clinica.",
+          "Pacientes demonstraram interesse, mas a conversa esfriou depois da resposta da clínica.",
         action: "Abrir follow-up sugerido",
         href: "/conversas?filter=sem_resposta",
         tone: "critical",
@@ -187,7 +187,7 @@ function fallbackData(): DashboardData {
         label: "Agendamentos em andamento",
         count: 5,
         description:
-          "Conversas com intencao clara de consulta ainda sem horario fechado.",
+          "Conversas com intenção clara de consulta ainda sem horário fechado.",
         action: "Ver oportunidades de agenda",
         href: "/conversas?filter=agendamentos",
         tone: "warm",
@@ -196,7 +196,7 @@ function fallbackData(): DashboardData {
         label: "Paciente precisa de humano",
         count: 1,
         description:
-          "A IA encontrou uma conversa que exige revisao da equipe antes de responder.",
+          "A IA encontrou uma conversa que exige revisão da equipe antes de responder.",
         action: "Revisar com cuidado",
         href: "/conversas?filter=attention",
         tone: "critical",
@@ -267,7 +267,7 @@ function buildPriorities(
       label: "Leads quentes sem retorno",
       count: hotNoResponse,
       description:
-        "Conversas com sinal de compra ou consulta que ficaram sem proximo passo claro.",
+        "Conversas com sinal de compra ou consulta que ficaram sem próximo passo claro.",
       action: "Abrir follow-up sugerido",
       href: "/conversas?filter=sem_resposta",
       tone: hotNoResponse > 0 ? "critical" : "calm",
@@ -276,7 +276,7 @@ function buildPriorities(
       label: "Agendamentos em andamento",
       count: scheduling,
       description:
-        "Pacientes ou leads tentando encontrar horario, valor ou disponibilidade.",
+        "Pacientes ou leads tentando encontrar horário, valor ou disponibilidade.",
       action: "Ver oportunidades de agenda",
       href: "/conversas?filter=agendamentos",
       tone: scheduling > 0 ? "warm" : "calm",
@@ -285,16 +285,16 @@ function buildPriorities(
       label: "Precisa de humano",
       count: needsHuman,
       description:
-        "Conversas em que a IA recomenda revisao da equipe antes de qualquer acao.",
+        "Conversas em que a IA recomenda revisão da equipe antes de qualquer ação.",
       action: "Revisar com cuidado",
       href: "/conversas?filter=attention",
       tone: needsHuman > 0 ? "critical" : "calm",
     },
     {
-      label: "Leads ainda nao convertidos",
+      label: "Leads ainda não convertidos",
       count: newLeadGap,
       description:
-        "Diferenca entre leads novos e agendamentos do mes, util para recuperar oportunidade.",
+        "Diferença entre leads novos e agendamentos do mês, útil para recuperar oportunidade.",
       action: "Analisar conversas",
       href: "/conversas?filter=leads",
       tone: newLeadGap > 0 ? "warm" : "calm",

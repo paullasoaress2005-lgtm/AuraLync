@@ -202,7 +202,7 @@ export function SettingsPanel({ payload }: Props) {
         <section className="interactive-card rounded-xl border border-[#dfe8e7] bg-white p-6 shadow-[0_18px_45px_rgba(15,60,67,0.05)]">
           <div className="flex items-center gap-2 text-sm font-medium text-[#0b5d6b]">
             <Clock3 className="h-4 w-4" />
-            Horarios de atendimento
+            Horários de atendimento
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <label className="block">
@@ -226,7 +226,7 @@ export function SettingsPanel({ payload }: Props) {
             <label className="flex items-center justify-between gap-4 rounded-lg bg-[#f5f8f7] px-4 py-3 md:col-span-2">
               <span>
                 <span className="block text-sm font-medium text-[#102f36]">
-                  Atender aos sabados
+                  Atender aos sábados
                 </span>
                 <span className="mt-1 block text-xs leading-5 text-[#789093]">
                   Controla disponibilidade padrão no calendário.

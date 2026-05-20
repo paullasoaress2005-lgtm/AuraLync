@@ -106,7 +106,7 @@ function patientSummaries(appointments: CalendarAppointment[]): PatientSummary[]
             ? "Sugerir retorno em 30 dias com resultados dos exames."
             : first.patient === "Beatriz Saraiva"
               ? "Lembrar retorno preventivo conforme orientação médica."
-              : "Retorno ainda nao definido.",
+              : "Retorno ainda não definido.",
       };
     })
     .sort((a, b) => a.name.localeCompare(b.name));

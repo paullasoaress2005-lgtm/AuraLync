@@ -86,7 +86,7 @@ const fallbackAppointments: CalendarAppointment[] = [
     phoneRaw: "5598984668340",
     title: "Consulta ginecologica",
     specialty: "ginecologia",
-    notes: "Solicitou consulta com a Dra. Camila e confirmou o horario sugerido pela recepcao.",
+    notes: "Solicitou consulta com a Dra. Camila e confirmou o horário sugerido pela recepção.",
     dayIndex: 1,
     top: 88,
     height: 88,
@@ -100,7 +100,7 @@ const fallbackAppointments: CalendarAppointment[] = [
     source: "manual",
     color: "bg-[#0b5d6b]",
     syncStatus: "not_configured",
-    syncLabel: "Google nao conectado",
+    syncLabel: "Google não conectado",
     googleEventLink: null,
   },
   {
@@ -124,7 +124,7 @@ const fallbackAppointments: CalendarAppointment[] = [
     source: "manual",
     color: "bg-[#5b7f74]",
     syncStatus: "not_configured",
-    syncLabel: "Google nao conectado",
+    syncLabel: "Google não conectado",
     googleEventLink: null,
   },
   {
@@ -134,7 +134,7 @@ const fallbackAppointments: CalendarAppointment[] = [
     phoneRaw: "",
     title: "Horário reservado",
     specialty: "agenda",
-    notes: "Horario reservado internamente pela equipe.",
+    notes: "Horário reservado internamente pela equipe.",
     dayIndex: 4,
     top: 404,
     height: 72,
@@ -148,7 +148,7 @@ const fallbackAppointments: CalendarAppointment[] = [
     source: "manual",
     color: "bg-[#b7791f]",
     syncStatus: "not_configured",
-    syncLabel: "Google nao conectado",
+    syncLabel: "Google não conectado",
     googleEventLink: null,
   },
 ];
@@ -277,14 +277,14 @@ function syncStatusLabel(row: AppointmentRow) {
   }
 
   const labels: Record<string, string> = {
-    not_configured: "Google nao conectado",
+    not_configured: "Google não conectado",
     pending: "Google pendente",
     synced: "Google sincronizado",
     failed: "Google falhou",
     disabled: "Google desligado",
   };
 
-  return labels[row.google_sync_status || "not_configured"] ?? "Google nao conectado";
+  return labels[row.google_sync_status || "not_configured"] ?? "Google não conectado";
 }
 
 function hasPresentationLeak(value: string | null | undefined) {
@@ -316,7 +316,7 @@ function presentationTitle(row: AppointmentRow) {
 function presentationNotes(row: AppointmentRow) {
   if (hasPresentationLeak(row.notes) || hasPresentationLeak(row.title)) {
     return row.status === "confirmed"
-      ? "Paciente solicitou consulta ginecologica com a Dra. Camila e confirmou o horario sugerido."
+      ? "Paciente solicitou consulta ginecológica com a Dra. Camila e confirmou o horário sugerido."
       : "Paciente perguntou sobre disponibilidade nesta semana e recebeu orientação de chegada.";
   }
 

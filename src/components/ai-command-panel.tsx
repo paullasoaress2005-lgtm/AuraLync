@@ -31,7 +31,7 @@ type CommandPreview = {
 const quickActions: QuickAction[] = [
   {
     icon: CalendarPlus,
-    title: "Bloquear horario",
+    title: "Bloquear horário",
     body: "Reservar um periodo sem abrir formulario manual.",
     command: "Bloqueie sexta-feira das 13:00 as 15:00 para reuniao da equipe.",
     previewTitle: "Bloqueio preparado",
@@ -46,14 +46,14 @@ const quickActions: QuickAction[] = [
       "Deixe as respostas de agendamento mais curtas, acolhedoras e sem termos tecnicos.",
     previewTitle: "Ajuste de tom preparado",
     previewBody:
-      "A IA vai sugerir uma nova regra de resposta para revisao antes de aplicar.",
+      "A IA vai sugerir uma nova regra de resposta para revisão antes de aplicar.",
   },
   {
     icon: MessageSquareWarning,
     title: "Relatar problema",
     body: "Registrar falha de agenda, WhatsApp ou atendimento.",
     command:
-      "Registre um problema: o paciente confirmou horario, mas a agenda nao atualizou.",
+      "Registre um problema: o paciente confirmou horário, mas a agenda não atualizou.",
     previewTitle: "Incidente operacional preparado",
     previewBody:
       "A IA vai registrar o problema e sugerir checagem de workflow, agenda e conversa.",
@@ -99,9 +99,9 @@ export function AiCommandPanel() {
     title: quickActions[0].previewTitle,
     summary: quickActions[0].previewBody,
     steps: [
-      "Confirmar data, horario e motivo do bloqueio.",
+      "Confirmar data, horário e motivo do bloqueio.",
       "Criar bloqueio na agenda do CRM.",
-      "Sincronizar com Google Calendar apos confirmacao.",
+      "Sincronizar com Google Calendar após confirmação.",
     ],
     requiresConfirmation: true,
     safeToExecute: false,
@@ -193,7 +193,7 @@ export function AiCommandPanel() {
           <div className="space-y-3">
             <div className="max-w-[82%] rounded-2xl rounded-tl-md bg-white px-4 py-3 text-sm leading-6 text-[#4d676b] shadow-[0_10px_24px_rgba(15,60,67,0.05)]">
               Posso ajustar agenda, regras de resposta e registrar problemas
-              operacionais para revisao.
+              operacionais para revisão.
             </div>
             {submittedCommand ? (
               <div className="ml-auto max-w-[82%] rounded-2xl rounded-tr-md bg-[#0b5d6b] px-4 py-3 text-sm leading-6 text-white shadow-[0_14px_30px_rgba(11,93,107,0.18)]">
@@ -262,7 +262,7 @@ export function AiCommandPanel() {
                 setCommand(event.target.value);
               }}
               className="min-h-20 w-full resize-none bg-transparent text-sm leading-6 text-[#102f36] outline-none placeholder:text-[#9aaeb0]"
-              placeholder="Escreva um comando: bloquear horarios, adicionar encaixe, ajustar tom da IA ou relatar problema..."
+              placeholder="Escreva um comando: bloquear horários, adicionar encaixe, ajustar tom da IA ou relatar problema..."
             />
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
               <p className="text-xs text-[#789093]">

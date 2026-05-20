@@ -67,7 +67,7 @@ function patientStatus(
   if (!appointment) {
     return {
       label: "Sem evento selecionado",
-      description: "Clique em um horario da agenda para abrir os detalhes.",
+      description: "Clique em um horário da agenda para abrir os detalhes.",
       historyCount: 0,
     };
   }
@@ -75,7 +75,7 @@ function patientStatus(
   if (appointment.statusKey === "blocked") {
     return {
       label: "Bloqueio interno",
-      description: "Horario reservado pela equipe, sem paciente vinculado.",
+      description: "Horário reservado pela equipe, sem paciente vinculado.",
       historyCount: 0,
     };
   }
@@ -101,7 +101,7 @@ function patientStatus(
   if (previous.length === 0) {
     return {
       label: "Primeira consulta",
-      description: "Ainda nao ha consulta anterior registrada para este telefone.",
+      description: "Ainda não há consulta anterior registrada para este telefone.",
       historyCount: samePatient.length,
     };
   }
@@ -485,7 +485,7 @@ export function AgendaWorkspace({
               </button>
             </div>
             <h2 className="mt-4 text-lg font-semibold text-[#102f36]">
-              {selectedAppointment?.patient ?? "Selecione um horario"}
+              {selectedAppointment?.patient ?? "Selecione um horário"}
             </h2>
             <p className="mt-1 text-sm text-[#789093]">
               {selectedAppointment?.phone ?? "Clique em um evento da agenda"}

@@ -48,14 +48,14 @@ const quickNav = [
 ];
 
 const rules = [
-  ["Classificacao", "agendamento, lead, curioso, retorno, outros"],
+  ["Classificação", "agendamento, lead, curioso, retorno, outros"],
   ["Estados vivos", "em atendimento, sem resposta, precisa humano"],
-  ["Transbordo", "dor intensa, urgencia, duvida clinica sensivel"],
+  ["Transbordo", "dor intensa, urgência, dúvida clínica sensível"],
   ["Tom de voz", "claro, acolhedor, objetivo e sem prometer diagnostico"],
 ];
 
 const knowledgeItems = [
-  "Horarios da clinica",
+  "Horários da clínica",
   "Servicos e procedimentos",
   "Perguntas frequentes",
   "Politicas de retorno",
@@ -71,7 +71,7 @@ const fallbackNotifications = [
   },
   {
     icon: CalendarPlus,
-    label: "Horario pode ser preenchido",
+    label: "Horário pode ser preenchido",
     body: "Existe conversa em andamento e janela livre na agenda da semana.",
     action: "Preparar encaixe",
     tone: "success",
@@ -79,7 +79,7 @@ const fallbackNotifications = [
   {
     icon: TimerReset,
     label: "Retorno pendente",
-    body: "Paciente recorrente pediu retorno e ainda nao confirmou o melhor horario.",
+    body: "Paciente recorrente pediu retorno e ainda não confirmou o melhor horário.",
     action: "Acompanhar conversa",
     tone: "warning",
   },
@@ -301,7 +301,7 @@ export default async function IaPage({ searchParams }: IaPageProps) {
                       Notificacoes inteligentes
                     </div>
                     <h2 className="mt-2 text-lg font-semibold text-[#102f36]">
-                      Alertas com proxima acao
+                      Alertas com próxima ação
                     </h2>
                   </div>
                   <span className="rounded-full bg-[#edf6f5] px-2.5 py-1 text-xs font-medium text-[#0b5d6b]">
@@ -371,7 +371,7 @@ export default async function IaPage({ searchParams }: IaPageProps) {
                 </div>
                 <p className="mt-5 text-3xl font-semibold">Ativa</p>
                 <p className="mt-3 text-sm leading-6 text-[#c7d8d9]">
-                  A IA ja alimenta estados vivos, resumos e proximas acoes no CRM.
+                  A IA já alimenta estados vivos, resumos e próximas ações no CRM.
                 </p>
               </section>
 

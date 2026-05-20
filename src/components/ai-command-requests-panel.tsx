@@ -224,7 +224,7 @@ export function AiCommandRequestsPanel({ items, setupRequired }: Props) {
           ))
         ) : (
           <div className="rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-4 text-sm leading-6 text-[#60777a]">
-            Nenhuma acao pendente registrada ainda.
+            Nenhuma ação pendente registrada ainda.
           </div>
         )}
       </div>

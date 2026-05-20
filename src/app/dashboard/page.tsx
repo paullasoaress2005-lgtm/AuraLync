@@ -213,7 +213,7 @@ export default async function Home({ searchParams }: HomeProps) {
                     </p>
                   </div>
                   <h2 className="mt-1 text-lg font-semibold text-[#102f36]">
-                    O que merece acao antes de virar oportunidade perdida
+                    O que merece ação antes de virar oportunidade perdida
                   </h2>
                 </div>
                 <Link
@@ -222,7 +222,7 @@ export default async function Home({ searchParams }: HomeProps) {
                   title="Abrir mini chat da IA"
                 >
                   <WandSparkles className="h-4 w-4" />
-                  Pedir acao rapida
+                  Pedir ação rápida
                 </Link>
               </div>
 
@@ -363,11 +363,11 @@ export default async function Home({ searchParams }: HomeProps) {
                     <AttentionIcon className="h-5 w-5" />
                   </div>
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs">
-                    Atencao necessaria
+                    Atenção necessária
                   </span>
                 </div>
                 <h2 className="mt-6 text-2xl font-semibold">
-                  {dashboard.attentionCount} conversas pedem revisao
+                  {dashboard.attentionCount} conversas pedem revisão
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-[#c7d8d9]">
                   O CRM detectou leads sem resposta, oportunidades quentes e

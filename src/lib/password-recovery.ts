@@ -116,7 +116,7 @@ export async function sendRecoveryCodeByWhatsApp(input: {
     body: JSON.stringify({
       phone: input.phone,
       code: input.code,
-      message: `Seu codigo AuraLync e ${input.code}. Ele expira em 10 minutos. Se voce nao solicitou, ignore esta mensagem.`,
+      message: `Seu código AuraLync é ${input.code}. Ele expira em 10 minutos. Se você não solicitou, ignore esta mensagem.`,
     }),
     cache: "no-store",
   }).catch(() => null);

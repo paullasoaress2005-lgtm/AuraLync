@@ -60,14 +60,14 @@ export function NotificationCommandBar({
           >
             <span className="h-2 w-2 rounded-full bg-[#b42318]" />
             <span className="text-sm font-medium text-[#102f36]">
-              {attentionCount} exigem revisao
+              {attentionCount} exigem revisão
             </span>
           </Link>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-full bg-[#edf6f5] px-3 py-1.5 text-xs font-medium text-[#0b5d6b]">
-            Notificacao interna ativa
+            Notificação interna ativa
           </span>
           <Link
             href={withView("/ajustes", currentView)}

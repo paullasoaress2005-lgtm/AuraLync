@@ -100,7 +100,7 @@ export default async function AgendaPage() {
               Agenda clínica
             </div>
             <p className="mt-2 text-xs leading-5 text-[#6f8588]">
-              Horarios vindos da IA, bloqueios manuais e confirmacoes em uma unica visao.
+              Horários vindos da IA, bloqueios manuais e confirmações em uma única visão.
             </p>
           </div>
         </aside>
@@ -127,10 +127,10 @@ export default async function AgendaPage() {
               <a
                 href="#novo-horario"
                 className="premium-action flex h-10 items-center gap-2 rounded-lg bg-[#0b5d6b] px-4 text-sm font-medium text-white transition hover:bg-[#084d59]"
-                title="Adicionar horario"
+                title="Adicionar horário"
               >
                 <Plus className="h-4 w-4" />
-                Novo horario
+                Novo horário
               </a>
             </div>
           </header>
