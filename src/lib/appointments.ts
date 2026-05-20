@@ -53,7 +53,7 @@ type AppointmentRow = {
 
 const DEMO_CLIENT = {
   name: "Dra. Camila Guimarães Espindola",
-  email: "demonstrativo@auralync.com",
+  email: "contato@clinicacamila.com.br",
   evolution_instance: "testes",
   specialty: "ginecologista",
   active: true,
@@ -317,7 +317,7 @@ function presentationNotes(row: AppointmentRow) {
   if (hasPresentationLeak(row.notes) || hasPresentationLeak(row.title)) {
     return row.status === "confirmed"
       ? "Paciente solicitou consulta ginecologica com a Dra. Camila e confirmou o horario sugerido."
-      : "Paciente perguntou sobre disponibilidade nesta semana e recebeu orientacao de chegada.";
+      : "Paciente perguntou sobre disponibilidade nesta semana e recebeu orientação de chegada.";
   }
 
   return row.notes ?? "";

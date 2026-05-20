@@ -92,7 +92,7 @@ export function SettingsPanel({ payload }: Props) {
       if (!data.ok) {
         setMessage(
           data.error ??
-            "Não foi possível salvar. Confira se o SQL de ajustes já foi executado.",
+            "Não foi possível salvar os ajustes. Tente novamente ou acione o suporte AuraLync.",
         );
         return;
       }
@@ -116,11 +116,11 @@ export function SettingsPanel({ payload }: Props) {
           <section className="rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-5 text-[#60777a]">
             <div className="flex items-center gap-2 text-sm font-semibold">
               <Database className="h-4 w-4" />
-              Ajustes em modo assistido
+              Preferências em ativação assistida
             </div>
             <p className="mt-2 text-sm leading-6">
               As preferências principais estão disponíveis. A equipe AuraLync
-              finaliza a persistência avançada durante a ativação do cliente.
+              finaliza a camada avançada durante a ativação do cliente.
             </p>
           </section>
         ) : null}

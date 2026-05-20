@@ -120,11 +120,19 @@ function clampDecimal(value: number, min: number, max: number, fallback: number)
   return Math.min(Math.max(value, min), max);
 }
 
+function publicContactEmail(client: CurrentClient) {
+  if (/demonstrativo|secretaria/i.test(client.email)) {
+    return "contato@clinicacamila.com.br";
+  }
+
+  return client.email;
+}
+
 function defaultSettings(client: CurrentClient): ClinicSettings {
   return {
     displayName: client.name,
     specialty: client.specialty,
-    contactEmail: client.email,
+    contactEmail: publicContactEmail(client),
     evolutionInstance: client.evolutionInstance,
     timezone: "America/Fortaleza",
     weekdayStart: "08:00",
@@ -148,7 +156,7 @@ function mapSettings(row: ClinicSettingsRow, client: CurrentClient): ClinicSetti
   return {
     displayName: row.display_name || client.name,
     specialty: row.specialty || client.specialty,
-    contactEmail: row.contact_email || client.email,
+    contactEmail: row.contact_email || publicContactEmail(client),
     evolutionInstance: client.evolutionInstance,
     timezone: row.timezone || "America/Fortaleza",
     weekdayStart: normalizeTime(row.weekday_start, "08:00"),
@@ -216,7 +224,7 @@ export async function updateClinicSettings(input: UpdateClinicSettingsInput) {
   const cleanInput = {
     displayName: input.displayName.trim() || client.name,
     specialty: input.specialty.trim() || client.specialty,
-    contactEmail: input.contactEmail.trim() || client.email,
+    contactEmail: input.contactEmail.trim() || publicContactEmail(client),
     timezone: input.timezone.trim() || "America/Fortaleza",
     weekdayStart: normalizeTime(input.weekdayStart, "08:00"),
     weekdayEnd: normalizeTime(input.weekdayEnd, "18:00"),

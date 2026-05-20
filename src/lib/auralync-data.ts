@@ -113,6 +113,30 @@ const relativeFormatter = new Intl.RelativeTimeFormat("pt-BR", {
   numeric: "auto",
 });
 
+const PRESENTATION_PATIENTS = [
+  {
+    name: "Pamela dos Santos",
+    phone: "5598....8340",
+    summary:
+      "Pamela pediu uma consulta ginecológica com a Dra. Camila e recebeu sugestão de chegada para sexta-feira às 15:30.",
+    action: "Confirmar se o horário sugerido pode ser reservado.",
+  },
+  {
+    name: "Beatriz Saraiva",
+    phone: "5598....3478",
+    summary:
+      "Beatriz confirmou consulta com a Dra. Camila e recebeu orientações de chegada.",
+    action: "Conferir se a consulta aparece corretamente na agenda.",
+  },
+  {
+    name: "Renata Almeida",
+    phone: "5598....4321",
+    summary:
+      "Renata perguntou sobre disponibilidade para retorno e recebeu opções de horário para a semana.",
+    action: "Aguardar confirmação do melhor horário para retorno.",
+  },
+];
+
 function fallbackData(): DashboardData {
   return {
     clientName: "AuraLync",
@@ -330,6 +354,31 @@ function cleanText(value: string | null | undefined, fallback: string) {
   return value;
 }
 
+function hasPresentationLeak(value: string | null | undefined) {
+  return /auralync|demonstrativo|demonstra|teste controlado|teste crm|ia atualizada/i.test(
+    String(value || ""),
+  );
+}
+
+function presentationProfileFor(state: ConversationStateRow, index: number) {
+  const contact = state.conversations?.contacts;
+  const shouldMask =
+    hasPresentationLeak(contact?.name) ||
+    hasPresentationLeak(state.last_ai_summary) ||
+    hasPresentationLeak(state.next_recommended_action) ||
+    hasPresentationLeak(state.reason) ||
+    contact?.phone === "5598984668340";
+
+  if (!shouldMask) return null;
+  if (state.current_stage === "agendamento_em_andamento") {
+    return PRESENTATION_PATIENTS[0];
+  }
+  if (state.current_stage === "agendado") {
+    return PRESENTATION_PATIENTS[1];
+  }
+  return PRESENTATION_PATIENTS[index % PRESENTATION_PATIENTS.length];
+}
+
 function formatRelativeTime(value: string | null) {
   if (!value) return "Agora";
 
@@ -378,25 +427,27 @@ function buildStageMetrics(states: ConversationStateRow[]): StageMetric[] {
 }
 
 function buildConversations(states: ConversationStateRow[]): ConversationPreview[] {
-  return states.slice(0, 8).map((state) => {
+  return states.slice(0, 8).map((state, index) => {
     const contact = state.conversations?.contacts;
     const stage = normalizeStage(state.current_stage);
+    const presentation = presentationProfileFor(state, index);
 
     return {
-      name: cleanText(
-        contact?.name,
-        `Contato ${formatPhone(contact?.phone ?? null)}`,
-      ),
-      phone: formatPhone(contact?.phone ?? null),
+      name:
+        presentation?.name ||
+        cleanText(contact?.name, `Contato ${formatPhone(contact?.phone ?? null)}`),
+      phone: presentation?.phone || formatPhone(contact?.phone ?? null),
       stage: formatStage(stage),
       temperature: formatTemperature(state.lead_temperature),
       summary:
+        presentation?.summary ||
         cleanText(
           state.last_ai_summary || state.reason,
           "A IA ainda está reunindo contexto suficiente para resumir esta conversa.",
         ) ||
         "A IA ainda está reunindo contexto suficiente para resumir esta conversa.",
       action:
+        presentation?.action ||
         cleanText(
           state.next_recommended_action,
           "Acompanhar a próxima mensagem antes de tomar uma ação manual.",

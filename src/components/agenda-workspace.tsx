@@ -551,10 +551,10 @@ export function AgendaWorkspace({
           <section className="rounded-xl border border-[#dfe8e7] bg-[#0d3640] p-5 text-white shadow-[0_22px_55px_rgba(13,54,64,0.16)]">
             <div className="flex items-center gap-2 text-sm font-medium">
               <LockKeyhole className="h-4 w-4" />
-              Seguranca
+              Segurança
             </div>
             <p className="mt-3 text-sm leading-6 text-[#c7d8d9]">
-              A agenda grava dados por clinica, com origem da acao e sincronizacao
+              A agenda grava dados por clínica, com origem da ação e sincronização
               controlada com Google Calendar.
             </p>
           </section>

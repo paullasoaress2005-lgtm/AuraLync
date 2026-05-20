@@ -24,8 +24,8 @@ export function ClientSwitcher({ current, currentName, basePath }: Props) {
   const items = [
     {
       id: "camila" as const,
-      label: "Dra. Camila Guimaraes Espindola",
-      description: "Clinica demo",
+      label: "Dra. Camila Guimarães Espindola",
+      description: "Clínica principal",
       icon: Command,
       href: hrefFor(basePath, "camila"),
     },

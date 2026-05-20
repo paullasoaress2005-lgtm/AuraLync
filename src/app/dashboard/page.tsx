@@ -25,7 +25,7 @@ const navigation = [
   { label: "Agendamentos", icon: CalendarCheck, href: "/agenda" },
   { label: "Pacientes", icon: UsersRound, href: "/pacientes" },
   { label: "IA", icon: Bot, href: "/ia" },
-  { label: "Seguranca", icon: ShieldCheck, href: "/seguranca" },
+  { label: "Segurança", icon: ShieldCheck, href: "/seguranca" },
   { label: "Ajustes", icon: Settings, href: "/ajustes" },
 ];
 
@@ -35,7 +35,7 @@ const quickNav = [
   ["Agendamentos", "/agenda"],
   ["Pacientes", "/pacientes"],
   ["IA", "/ia"],
-  ["Seguranca", "/seguranca"],
+  ["Segurança", "/seguranca"],
   ["Ajustes", "/ajustes"],
 ];
 
@@ -127,8 +127,8 @@ export default async function Home({ searchParams }: HomeProps) {
               Ambiente selecionado
             </p>
             <p className="mt-2 text-xs leading-5 text-[#6f8588]">
-              Use o seletor no topo para alternar entre a clinica demo e a
-              vitrine AuraLync.
+              Use o seletor no topo para alternar entre perfis conectados e
+              a visão institucional da AuraLync.
             </p>
           </div>
         </aside>
@@ -137,7 +137,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <header className="flex h-20 items-center justify-between border-b border-[#dfe8e7] bg-white/78 px-5 backdrop-blur md:px-8">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#6f8588]">
-                Sistema vitrine
+                Central AuraLync
               </p>
               <h1 className="mt-1 text-xl font-semibold text-[#102f36] md:text-2xl">
                 Central inteligente do WhatsApp

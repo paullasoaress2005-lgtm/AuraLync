@@ -33,7 +33,7 @@ const navigation = [
   { label: "Agendamentos", icon: CalendarCheck, href: "/agenda" },
   { label: "Pacientes", icon: UsersRound, href: "/pacientes" },
   { label: "IA", icon: Bot, active: true, href: "/ia" },
-  { label: "Seguranca", icon: ShieldCheck, href: "/seguranca" },
+  { label: "Segurança", icon: ShieldCheck, href: "/seguranca" },
   { label: "Ajustes", icon: Settings, href: "/ajustes" },
 ];
 
@@ -43,7 +43,7 @@ const quickNav = [
   ["Agendamentos", "/agenda"],
   ["Pacientes", "/pacientes"],
   ["IA", "/ia"],
-  ["Seguranca", "/seguranca"],
+  ["Segurança", "/seguranca"],
   ["Ajustes", "/ajustes"],
 ];
 

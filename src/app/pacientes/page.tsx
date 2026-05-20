@@ -22,7 +22,7 @@ const navigation = [
   { label: "Agendamentos", icon: CalendarCheck, href: "/agenda" },
   { label: "Pacientes", icon: UsersRound, active: true, href: "/pacientes" },
   { label: "IA", icon: Bot, href: "/ia" },
-  { label: "Seguranca", icon: ShieldCheck, href: "/seguranca" },
+  { label: "Segurança", icon: ShieldCheck, href: "/seguranca" },
   { label: "Ajustes", icon: Settings, href: "/ajustes" },
 ];
 
@@ -32,7 +32,7 @@ const quickNav = [
   ["Agendamentos", "/agenda"],
   ["Pacientes", "/pacientes"],
   ["IA", "/ia"],
-  ["Seguranca", "/seguranca"],
+  ["Segurança", "/seguranca"],
   ["Ajustes", "/ajustes"],
 ];
 
@@ -94,18 +94,18 @@ function patientSummaries(appointments: CalendarAppointment[]): PatientSummary[]
             ? "Ultrassonografia transvaginal e exames hormonais de rotina."
             : first.patient === "Beatriz Saraiva"
               ? "Preventivo e exames laboratoriais de acompanhamento."
-              : "Aguardando registro da ultima consulta.",
+              : "Aguardando registro da última consulta.",
         prescribedMedication:
           first.patient === "Pamela dos Santos"
-            ? "Orientacao registrada pelo medico apos avaliacao presencial."
+            ? "Orientação registrada pelo médico após avaliação presencial."
             : first.patient === "Beatriz Saraiva"
-              ? "Sem medicacao registrada nesta consulta."
+              ? "Sem medicação registrada nesta consulta."
               : "Sem registro de prescricao.",
         returnPlan:
           first.patient === "Pamela dos Santos"
             ? "Sugerir retorno em 30 dias com resultados dos exames."
             : first.patient === "Beatriz Saraiva"
-              ? "Lembrar retorno preventivo conforme orientacao medica."
+              ? "Lembrar retorno preventivo conforme orientação médica."
               : "Retorno ainda nao definido.",
       };
     })
@@ -282,7 +282,7 @@ export default async function PacientesPage() {
                       ) : (
                         <LockKeyhole className="h-4 w-4" />
                       )}
-                      Informacoes da ultima consulta
+                      Informações da última consulta
                     </div>
                     {canSeeClinicalData ? (
                       <div className="mt-3 grid gap-3">
@@ -296,7 +296,7 @@ export default async function PacientesPage() {
                         </div>
                         <div className="rounded-lg bg-white p-3">
                           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#789093]">
-                            Medicacao / orientacao
+                            Medicação / orientação
                           </p>
                           <p className="mt-1 text-sm leading-6 text-[#31575d]">
                             {patient.prescribedMedication}
@@ -313,8 +313,8 @@ export default async function PacientesPage() {
                       </div>
                     ) : (
                       <p className="mt-3 text-sm leading-6 text-[#60777a]">
-                        Acesso clinico restrito ao medico ou administrador da
-                        clinica. Perfil operacional visualiza agenda, conversa
+                        Acesso clínico restrito ao médico ou administrador da
+                        clínica. Perfil operacional visualiza agenda, conversa
                         e follow-up sem prontuario.
                       </p>
                     )}

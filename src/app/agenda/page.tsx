@@ -22,7 +22,7 @@ const navigation = [
   { label: "Agendamentos", icon: CalendarCheck, active: true, href: "/agenda" },
   { label: "Pacientes", icon: UsersRound, href: "/pacientes" },
   { label: "IA", icon: Bot, href: "/ia" },
-  { label: "Seguranca", icon: ShieldCheck, href: "/seguranca" },
+  { label: "Segurança", icon: ShieldCheck, href: "/seguranca" },
   { label: "Ajustes", icon: Settings, href: "/ajustes" },
 ];
 
@@ -32,7 +32,7 @@ const quickNav = [
   ["Agendamentos", "/agenda"],
   ["Pacientes", "/pacientes"],
   ["IA", "/ia"],
-  ["Seguranca", "/seguranca"],
+  ["Segurança", "/seguranca"],
   ["Ajustes", "/ajustes"],
 ];
 
@@ -97,7 +97,7 @@ export default async function AgendaPage() {
           <div className="mt-10 rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-4">
             <div className="flex items-center gap-2 text-sm font-medium text-[#143d44]">
               <Link2 className="h-4 w-4 text-[#0a5e6e]" />
-              Agenda clinica
+              Agenda clínica
             </div>
             <p className="mt-2 text-xs leading-5 text-[#6f8588]">
               Horarios vindos da IA, bloqueios manuais e confirmacoes em uma unica visao.
@@ -109,7 +109,7 @@ export default async function AgendaPage() {
           <header className="flex h-20 items-center justify-between border-b border-[#dfe8e7] bg-white/78 px-5 backdrop-blur md:px-8">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#6f8588]">
-                Agenda medica
+                Agenda médica
               </p>
               <h1 className="mt-1 text-xl font-semibold text-[#102f36] md:text-2xl">
                 {client.name}

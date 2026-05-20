@@ -75,7 +75,7 @@ export function NotificationCommandBar({
             title="Configurar aviso por WhatsApp"
           >
             <Send className="h-4 w-4" />
-            Avisar medico no WhatsApp
+            Avisar médico no WhatsApp
           </Link>
         </div>
       </div>
