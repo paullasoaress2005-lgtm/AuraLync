@@ -156,24 +156,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 Esqueci minha senha
             </Link>
 
-            <div className="mt-6 grid gap-2 rounded-xl border border-[#dfe8e7] bg-[#fbfdfd] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#789093]">
-                Acessos de demonstração
-              </p>
-              <div className="rounded-lg bg-white p-3 text-sm leading-6 text-[#31575d]">
-                <span className="font-semibold text-[#102f36]">Médico:</span>{" "}
-                demonstrativo@auralync.com
-              </div>
-              <div className="rounded-lg bg-white p-3 text-sm leading-6 text-[#31575d]">
-                <span className="font-semibold text-[#102f36]">Secretária:</span>{" "}
-                secretaria@auralync.com
-              </div>
-              <p className="text-xs leading-5 text-[#789093]">
-                A senha temporária deve ser definida no Supabase Auth antes do
-                primeiro uso público.
-              </p>
-            </div>
-
             <p className="mt-6 text-center text-xs leading-5 text-[#789093]">
               Acesso restrito. Cada clínica visualiza apenas seus próprios dados.
             </p>
